@@ -13,14 +13,14 @@ const App = () => {
         shown: null
     })
 
-    useEffect(()=>{
-        actions.todos.add([
-            "kupi vodu",
-            "jedi celer",
-            "iskopaj zlato",
-            "osvoji svet",
-        ])
-    }, [])
+    // useEffect(()=>{
+    //     actions.todos.add([
+    //         "kupi vodu",
+    //         "jedi celer",
+    //         "iskopaj zlato",
+    //         "osvoji svet",
+    //     ])
+    // }, [])
 
     const shownItem = state.todos.find(item => item.id===state.shown)
     const drawer = (
@@ -83,8 +83,3 @@ const App = () => {
 }
 
 export default App;
-
-// fetch and server
-
-// modal open
-// wrap setState for every action
