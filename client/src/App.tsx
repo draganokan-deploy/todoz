@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Button, Overlay, Classes, Drawer, TextArea } from '@blueprintjs/core'
+import { Button, Drawer, TextArea } from '@blueprintjs/core'
 import 'normalize.css/normalize.css';
 import '@blueprintjs/core/lib/css/blueprint.css';
 import useAppState from './reducer'
@@ -41,7 +41,7 @@ const App = () => {
                                 value={shownItem.description}
                                 growVertically
                                 onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
-                                    actions.todos.desc(shownItem.id, e.target.value)
+                                    actions.todos.update(shownItem.id, {description: e.target.value})
                                 }}
                             />
                         </div>
@@ -62,9 +62,9 @@ const App = () => {
                             <TodoItem
                                 key={item.id}
                                 item={item}
-                                onChange={()=>actions.todos.toggle(item.id)}
+                                onChange={()=>actions.todos.update(item.id, {checked: !item.checked})}
                                 onRemove={()=>actions.todos.remove(item.id)}
-                                onRename={label => actions.todos.edit(item.id, label)}
+                                onRename={label => actions.todos.update(item.id, {label})}
                             />
                             <Button minimal small icon="share" onClick={()=>{actions.show(item.id)}}/>
                         </div>

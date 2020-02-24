@@ -36,24 +36,13 @@ function useAppState(initialState: AppState) {
         })
         return newTodos
       },
-      toggle: (id: TodoId) => {
-        const todo = state.todos.find(todo => todo.id === id)
-        if (todo) {
-          todo.checked = !todo.checked
-          setState({ ...state })
-        }
-      },
-      edit: (id: TodoId, label: string) => {
-        const todo = state.todos.find(todo => todo.id === id)
-        if (todo) {
-          todo.label = label
-          setState({ ...state })
-        }
-      },
-      desc: (id: TodoId, desc: string) => {
-        const todo = state.todos.find(todo => todo.id === id)
-        if (todo) {
-          todo.description = desc
+      update: (id: TodoId, update: Partial<Omit<TodoItem, "id">>) => {
+        const todoIdx = state.todos.findIndex(todo => todo.id === id)
+        if (todoIdx!==-1) {
+          state.todos[todoIdx] = {
+            ...state.todos[todoIdx],
+            ...update
+          }
           setState({ ...state })
         }
       },

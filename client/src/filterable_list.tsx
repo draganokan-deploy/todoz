@@ -16,26 +16,26 @@ function FilterableList<T extends {id: number}>(props: FilterableListProps<T>) {
   const filteredItems = props.items.filter(item => props.serialize(item).includes(filterQuery))
 
   return (
-      <div style={{...(props.style||{})}}>
-          <div style={{marginBottom: "10px"}}>
-              <InputGroup
-                  value={filterQuery}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                  setFilterQuery(e.target.value)
-                  }}
-                  placeholder="Filter..."
-                  spellCheck={false}
-              />
-          </div>
-          <div style={{
-              marginBottom: "20px"
-          }}>
-              {
-                  filteredItems.map(item => <div key={item.id}>{props.renderItem(item)}</div>)
-              }
-          </div>
-          {props.children}
-      </div>
+    <div style={{...(props.style||{})}}>
+        <div style={{marginBottom: "10px"}}>
+            <InputGroup
+                value={filterQuery}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                setFilterQuery(e.target.value)
+                }}
+                placeholder="Filter..."
+                spellCheck={false}
+            />
+        </div>
+        <div style={{
+            marginBottom: "20px"
+        }}>
+            {
+                filteredItems.map(item => <div key={item.id}>{props.renderItem(item)}</div>)
+            }
+        </div>
+        {props.children}
+    </div>
   )
 }
 
