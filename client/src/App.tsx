@@ -1,10 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react'
 import { Button, Drawer, TextArea } from '@blueprintjs/core'
-import 'normalize.css/normalize.css';
-import '@blueprintjs/core/lib/css/blueprint.css';
+import 'normalize.css/normalize.css'
+import '@blueprintjs/core/lib/css/blueprint.css'
 import useAppState from './reducer'
 import FilterableList from './filterable_list'
 import TodoItem from './todo_item'
+import Profile1 from './profile1'
+import Profile2 from './profile2'
+import Profile3, {Title, Month} from './profile3'
 
 const App = () => {
 
@@ -51,34 +54,80 @@ const App = () => {
     )
 
     return (
-        <div style={{width: "400px", margin: "40px auto"}}>
-            {drawer}
-            <h3>My To-do list:</h3>
-            <FilterableList
-                items={state.todos}
-                renderItem={item => {
-                    return (
-                        <div style={{display: "grid", alignItems: "center", gridTemplateColumns: "1fr 24px"}}>
-                            <TodoItem
-                                key={item.id}
-                                item={item}
-                                onChange={()=>actions.todos.update(item.id, {checked: !item.checked})}
-                                onRemove={()=>actions.todos.remove(item.id)}
-                                onRename={label => actions.todos.update(item.id, {label})}
-                            />
-                            <Button minimal small icon="share" onClick={()=>{actions.show(item.id)}}/>
-                        </div>
-                    )
+        <>
+            {/* TODOS */}
+            <div style={{width: "400px", margin: "40px auto"}}>
+                {drawer}
+                <h3>My To-do list:</h3>
+                <FilterableList
+                    items={state.todos}
+                    renderItem={item => {
+                        return (
+                            <div style={{display: "grid", alignItems: "center", gridTemplateColumns: "1fr 24px"}}>
+                                <TodoItem
+                                    key={item.id}
+                                    item={item}
+                                    onChange={()=>actions.todos.update(item.id, {checked: !item.checked})}
+                                    onRemove={()=>actions.todos.remove(item.id)}
+                                    onRename={label => actions.todos.update(item.id, {label})}
+                                />
+                                <Button minimal small icon="share" onClick={()=>{actions.show(item.id)}}/>
+                            </div>
+                        )
+                    }}
+                    serialize={item => item.label}
+                >
+                    <Button
+                        text="Add new item"
+                        icon="small-plus"
+                        onClick={()=>{actions.todos.add("")}}
+                    />
+                </FilterableList>
+            </div>
+
+            {/* PROFILE 1 - pure JS version */}
+            <Profile1
+                name="Dragan Okanovic"
+                dob="6/11/1993"
+                sex="M"
+                relationship_status="single"
+                posts={[]}
+            />
+
+            {/* PROFILE 2 - JS + propTypes */}
+            <Profile2
+                name="Dragan Okanovic"
+                dob="6/11/1993"
+                sex="M"
+                relationship_status="single"
+                posts={[]}
+            />
+
+            {/* PROFILE 3 - Typescript version */}
+            <Profile3
+                name={{
+                    first: "Dragan",
+                    last: "Okanovic",
+                    title: Title.Mr
                 }}
-                serialize={item => item.label}
-            >
-                <Button
-                    text="Add new item"
-                    icon="small-plus"
-                    onClick={()=>{actions.todos.add("")}}
-                />
-            </FilterableList>
-        </div>
+                dob={{
+                    day: 11,
+                    month: Month.JUN,
+                    year: 1993
+                }}
+                sex="male"
+                relationship_status="single"
+                posts={[{
+                    content: "Hello world!",
+                    date: {
+                        day: 25,
+                        month: Month.FEB,
+                        year: 2020
+                    },
+                    visibility: "public"
+                }]}
+            />
+        </>
     );
 }
 
