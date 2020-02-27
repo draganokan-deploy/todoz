@@ -123,8 +123,8 @@ class Homework extends React.Component<HomeworkProps, HomeworkState> {
                 style={{border: "5px inset brown"}}
                 onClick={(e: React.MouseEvent<HTMLCanvasElement, MouseEvent>)=>{
                     if (this.ref) {
-                        const x = e.pageX - this.ref.offsetLeft
-                        const y = e.pageY - this.ref.offsetTop
+                        const x = e.pageX - this.ref.offsetLeft - 5
+                        const y = e.pageY - this.ref.offsetTop - 5
                         this.addDot(x, y)
                     }
                 }}
