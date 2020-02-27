@@ -142,12 +142,10 @@ napisati komponentu koja:
     - koristiti TypeScript (cela komponenta je jedan .tsx fajl)
     - na klik na kanvas se stvara oblik koji pulsira
     - randomizovani boja, maksimalna velicina, brzina pulsiranja i oblik (krug ili kvadrat ili plusic)
+        - krug ima maksimalni poluprecnik ('r')
+        - kvadrat ima maksimalnu dimenziju stranica ('a' i 'b')
+        - plusic ima maksimalnu velicinu i debljinu ('size' i 'width')
     - povesti racuna da se sve inicijalizuje u korektnim trenucima i da se svi resursi brisu kada nisu potrebni
     - komponenta prima opcioni prop broj koji predstavlja broj unapred napravljenih sasvim randomizovanih oblika
-
-nesto sto pravi tip
-sto pravi generic
-sto koristi Partial
-koristi literale
 
 */
