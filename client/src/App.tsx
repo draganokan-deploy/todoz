@@ -9,7 +9,6 @@ import Profile1 from './profile1'
 import Profile2 from './profile2'
 import Profile3, {Title, Month} from './profile3'
 import Shapes from './homework/shapes'
-import PostalOffice from './homework/postaloffice'
 
 const App = () => {
 
