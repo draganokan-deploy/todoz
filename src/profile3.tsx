@@ -84,9 +84,7 @@ type Post = {
 type PostVisibility =
     | "public"
     | "friends-only"
-    | {
-        
-    }
+    | "only-me"
 
 const dateToStr = (date: Date): string => {
     return `${date.day} ${date.month}, ${date.year}`
