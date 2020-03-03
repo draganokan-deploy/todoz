@@ -9,6 +9,15 @@ import Profile1 from './profile1'
 import Profile2 from './profile2'
 import Profile3, {Title, Month} from './profile3'
 import Shapes from './homework/shapes'
+import TodoItem2, {FilterableList as FList, Todo} from './todo'
+
+const todoItems: Todo[] = [{
+    checked: false,
+    name: "cao"
+}, {
+    checked: true,
+    name: "typescript is awesome!!!!"
+}]
 
 const App = () => {
 
@@ -56,6 +65,13 @@ const App = () => {
 
     return (
         <>
+
+            <FList
+                data={todoItems}
+                renderOne={todo => <TodoItem2 {...todo} />}
+                serialize={todo => todo.name}
+            />
+
             {/* TODOS */}
             <div style={{width: "400px", margin: "40px auto"}}>
                 {drawer}
@@ -88,27 +104,27 @@ const App = () => {
 
             {/* PROFILE 1 - pure JS version */}
             <Profile1
-                name="Dragan Okanovic"
-                dob="6/11/1993"
+                name="John Smith"
+                dob="2/23/1993"
                 sex="M"
-                relationship_status="single"
+                relationship_status="falafel"
                 posts={[]}
             />
 
             {/* PROFILE 2 - JS + propTypes */}
             <Profile2
-                name="Dragan Okanovic"
-                dob="6/11/1993"
+                name="John Smith"
+                dob="2/23/1993"
                 sex="M"
-                relationship_status="single"
+                relationship_status="falafel"
                 posts={[]}
             />
 
             {/* PROFILE 3 - Typescript version */}
             <Profile3
                 name={{
-                    first: "Dragan",
-                    last: "Okanovic",
+                    first: "John",
+                    last: "SMith",
                     title: Title.Mr
                 }}
                 dob={{
