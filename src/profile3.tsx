@@ -1,6 +1,10 @@
 import React from 'react'
 import { Card, Icon } from '@blueprintjs/core'
 
+const dateToStr = (date: Date): string => {
+    return `${date.day} ${date.month}, ${date.year}`
+}
+
 export type Sex = "female" | "male"
 
 export enum Title {
@@ -63,6 +67,18 @@ export type Date = {
 
 export type RelationshipStatus = "single" | "in relationship" | "engaged" | "married" | "divorced" | "widowed"
 
+
+type Post = {
+    date: Date
+    content: string
+    visibility: PostVisibility
+}
+
+type PostVisibility =
+| "public"
+| "friends-only"
+| "only-me"
+
 type ProfileProps = {
     name: {
         title?: Title
@@ -73,21 +89,6 @@ type ProfileProps = {
     sex: Sex
     relationship_status: RelationshipStatus
     posts: Post[]
-}
-
-type Post = {
-    date: Date
-    content: string
-    visibility: PostVisibility
-}
-
-type PostVisibility =
-    | "public"
-    | "friends-only"
-    | "only-me"
-
-const dateToStr = (date: Date): string => {
-    return `${date.day} ${date.month}, ${date.year}`
 }
 
 const Profile: React.FC<ProfileProps> = ({
